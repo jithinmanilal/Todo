@@ -7,15 +7,20 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate, logout
+from django.views.decorators.cache import cache_control
 
 # Imports for Reordering Feature
 from django.views import View
 from django.shortcuts import redirect
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
 
 from .models import Task
 from .forms import PositionForm
+
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
 
 class CustomLoginView(LoginView):
@@ -44,7 +49,9 @@ class RegisterPage(FormView):
             return redirect('tasks')
         return super(RegisterPage, self).get(*args, **kwargs)
 
+dec = [never_cache,]
 
+@method_decorator(dec, name='dispatch')
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
@@ -64,12 +71,14 @@ class TaskList(LoginRequiredMixin, ListView):
         return context
 
 
+@method_decorator(dec, name='dispatch')
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
 
 
+@method_decorator(dec, name='dispatch')
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title', 'description', 'complete']
@@ -80,12 +89,14 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         return super(TaskCreate, self).form_valid(form)
 
 
+@method_decorator(dec, name='dispatch')
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
 
 
+@method_decorator(dec, name='dispatch')
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
@@ -105,3 +116,11 @@ class TaskReorder(View):
                 self.request.user.set_task_order(positionList)
 
         return redirect(reverse_lazy('tasks'))
+
+
+
+def Logout_User(request):
+    logout(request)
+    response = redirect('login')
+    response.delete_cookie('user_location')
+    return response

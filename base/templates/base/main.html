@@ -8,36 +8,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <style>
         body {
-            background-color:#eeeee4;
+            background-color:#d6dbe4;
             font-family: 'Nunito', sans-serif;
             padding-top: 50px;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Raleway', sans-serif;
-            
+            font-size: xx-large;
         }
         a, p {
-            color: #4b5156;
+            color: #26292c;
         }
-        .container {
-            max-width: 550px;
-            margin: auto;
-            background-color: antiquewhite;
-            box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
-        }
-        .header-bar {
+        nav {
             display: flex;
             justify-content: space-between;
-            color: #fff;
             padding: 10px;
             border-radius: 5px 5px 0 0;
-            background: linear-gradient(90deg, #eea390 0%, #eb796f 43%, #eb796f 100%);
+            background:linear-gradient(90deg, #90bcee 0%, #6da9ec 43%, #2f8af1 100%)
         }
-        .header-bar a {
-            color: #fff;
+        #search-add-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        #add-link {
             text-decoration: none;
+            font-size: 42px;
+            text-shadow: 1px 1px #180377;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card {
+            margin: auto;
+            padding: 10px;
         }
         .task-wrapper {
             display: flex;
@@ -70,46 +78,13 @@
         .delete-link {
             text-decoration: none;
             font-weight: 900;
-            color: #cf4949;
+            color: #b60505;
             font-size: 22px;
             line-height: 0;
-        }
-        #search-add-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-        }
-        #add-link {
-            color: #eb796f;
-            text-decoration: none;
-            font-size: 42px;
-            text-shadow: 1px 1px #81413b;
-        }
-        input[type=text],
-        input[type=password],
-        textarea {
-            border: 1px solid #eb796f;
-            border-radius: 5px;
-            padding: 10px;
-            width: 90%;
         }
         label {
             padding-top: 10px;
             display: block;
-        }
-        .button {
-            border: 1px solid #eb796f;
-            background-color: #fafafa;
-            color: #eb796f;
-            padding: 10px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .card-body {
-            padding: 20px;
         }
     </style>
 </head>
@@ -119,5 +94,8 @@
 
         {% endblock content%}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 </body>
 </html>
